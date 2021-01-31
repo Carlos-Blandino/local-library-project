@@ -7,6 +7,7 @@ function totalAccountsCount(accounts) {
 }
 
 function booksBorrowedCount(books) {
+  // need to iterate over all borrows and add up the unreturned books
   const borrowedItems = _getAllBorrows(books);
   const result = borrowedItems.reduce((acc, item) => {
     if (item.returned === false) {
@@ -46,7 +47,9 @@ function _getTopFiveBooksSortedByBorrowsLength(books) {
 function getMostCommonGenres(books) {
   const formatedGenres = [];
   // need a count of each genres appearance in books data and placed in an object
-  const genreCounts = books.reduce((acc, { genre }) => {
+  const genreCounts = books.reduce((acc, {
+    genre
+  }) => {
     acc[genre] = (acc[genre] || 0) + 1;
     return acc;
   }, {});
@@ -57,7 +60,10 @@ function getMostCommonGenres(books) {
   for (let i = 0; i < Object.keys(genreCounts).length; i++) {
     const name = Object.keys(genreCounts)[i];
     const count = Object.values(genreCounts)[i];
-    formatedGenres[i] = { name, count };
+    formatedGenres[i] = {
+      name,
+      count
+    };
   }
 
   const sorted = formatedGenres
