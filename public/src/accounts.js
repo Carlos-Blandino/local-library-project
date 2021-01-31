@@ -28,7 +28,7 @@ function numberOfBorrows(account, books) {
   const accountNumber = account.id;
   // iterate through  the  books array  filtering out the elements that match id
   const count = 0;
-  //const borrowsArray = books.map((book) => book.borrows);
+
   const borrowedItems = getAllBorrows(books);
 
   const result = borrowedItems.reduce((acc, item) => {
@@ -40,20 +40,27 @@ function numberOfBorrows(account, books) {
 
   return result;
 }
+
 function getBooksPossessedByAccount(account, books, authors) {
-  //use filter and find with if
-  const theBook = books
+
+  //use filter, map with find 
+  const theCurrentOutBooks = books
     .filter((book) => {
-      const currentBook = book.borrows[0];
+      // first book in the array represents  the current transaction
+      const lastBorrowedBook = book.borrows[0];
       // need only false returns  of the current book and
       // need only books that match the account id
-      return !currentBook.returned && currentBook.id === account.id;
+      return !lastBorrowedBook.returned && lastBorrowedBook.id === account.id;
     })
     .map((book) => {
+      //need the book with the authors info
       const author = authors.find((author) => author.id === book.authorId);
-      return { ...book, author };
+      return {
+        ...book,
+        author
+      };
     });
-  return theBook;
+  return theCurrentOutBooks;
 }
 
 module.exports = {
