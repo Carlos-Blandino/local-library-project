@@ -10,7 +10,7 @@ function partitionBooksByBorrowedStatus(books) {
   // obtain array of unreturned books
   const borrowed = books.filter((book) => book.borrows[0].returned === false);
   //obtain array of returned books
-  const returned = books.filter((book) => books.borrow[0].returned === true);
+  const returned = books.filter((book) => book.borrows[0].returned === true);
   // resulting array will hold an array of book objects of unreturned book and 
   // and hold a second array of returned book objects
   return [borrowed, returned];

@@ -1,15 +1,20 @@
 // helper funcion getAllBorrows returns an a singel array of borrows objects
 function getAllBorrows(books) {
-  const borrowedArray = [];
-  let itemArray = [];
-  for (let i = 0; i < books.length; i++) {
-    borrowedArray.push(books[i].borrows);
-  }
-  for (let borrow of borrowedArray) {
-    borrow.filter((item) => {
-      itemArray.push(item);
-    });
-  }
+  const itemArray = books.map((book) => {
+    return book.borrows;
+  }).filter((item) => {
+    return item;
+  })
+  // const borrowedArray = [];
+  // let itemArray = [];
+  // for (let i = 0; i < books.length; i++) {
+  //   borrowedArray.push(books[i].borrows);
+  // }
+  // for (let borrow of borrowedArray) {
+  //   borrow.filter((item) => {
+  //     itemArray.push(item);
+  //   });
+  // }
   return itemArray;
 }
 // end of helper function getAllBorrows

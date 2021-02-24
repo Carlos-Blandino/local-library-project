@@ -65,7 +65,7 @@ function getMostCommonGenres(books) {
       count
     };
   }
-
+  console.log(formatedGenres)
   const sorted = formatedGenres
     .sort((a, b) => (a.count < b.count ? 1 : -1))
     .slice(0, 5);
